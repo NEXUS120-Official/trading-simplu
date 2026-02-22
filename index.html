@@ -1,142 +1,443 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8">
-  <title>TRADING SIMPLU</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="TRADING SIMPLU – educație și mindset în trading. Fără promisiuni, fără hype.">
-  <meta name="robots" content="index, follow">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trading Simplu — Acces rapid la Discord + semnale educaționale</title>
+  <meta name="description" content="Începe simplu: primești pași clari + acces către abonamentele Dan Toma (Discord, semnale educaționale, mentorat). Conținut educațional, fără promisiuni." />
+  <meta name="theme-color" content="#0B1220" />
+
+  <!-- Open Graph / Share -->
+  <meta property="og:title" content="Trading Simplu — Începe simplu (Discord + semnale educaționale)" />
+  <meta property="og:description" content="Pași clari pentru începători + acces către abonamente (Stocks, Crypto, Forex, US30 etc.)." />
+  <meta property="og:type" content="website" />
+  <!-- TODO: pune o imagine 1200x630 pe GitHub repo și link direct aici -->
+  <meta property="og:image" content="" />
+
+  <!-- OPTIONAL: GA4 -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+
+  <!-- OPTIONAL: Meta Pixel -->
+  <!--
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','XXXXXXXXXXXXXXX');
+    fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"
+  /></noscript>
+  -->
+
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      --bg:#0B1220; --card:#0F1A2E; --text:#E6EAF2; --muted:#98A2B3;
+      --accent:#5B8CFF; --accent2:#38D9A9; --danger:#FF5B5B;
+      --border: rgba(255,255,255,.08); --ring: rgba(91,140,255,.35);
+      --shadow: 0 16px 40px rgba(0,0,0,.35); --radius: 18px; --max: 1120px;
     }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #020617, #0f172a);
-      color: #e5e7eb;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(91,140,255,.20), transparent 55%),
+      radial-gradient(800px 500px at 80% 10%, rgba(56,217,169,.14), transparent 55%),
+      var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
-    .wrapper {
-      max-width: 760px;
-      margin: auto;
-      padding: 48px 20px;
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px 95px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 10px 30px rgba(91,140,255,.22)}
+    .brand b{letter-spacing:.2px}
+    .muted{color:rgba(230,234,242,.65)}
+    .pill{font-size:12px;color:rgba(230,234,242,.8);border:1px solid var(--border);
+      padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.03)}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .nav a{font-size:13px;color:rgba(230,234,242,.75);padding:8px 10px;border-radius:12px;border:1px solid transparent}
+    .nav a:hover{border-color:var(--border);background:rgba(255,255,255,.03)}
+    .cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 16px;border-radius:14px;
+      font-weight:800;border:1px solid rgba(255,255,255,.10)}
+    .cta.primary{background:linear-gradient(135deg,var(--accent),#7A5BFF);box-shadow:0 18px 45px rgba(91,140,255,.25)}
+    .cta.primary:hover{filter:brightness(1.06)}
+    .cta.secondary{background:rgba(255,255,255,.03)}
+    .cta.secondary:hover{background:rgba(255,255,255,.06)}
+    .panel{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero{display:grid;grid-template-columns: 1.1fr .9fr;gap:18px;align-items:stretch;margin-top:18px}
+    @media (max-width: 900px){.hero{grid-template-columns:1fr}}
+    .heroLeft{padding:26px 24px 20px;position:relative;overflow:hidden}
+    .heroLeft:before{content:"";position:absolute;inset:-2px;
+      background:radial-gradient(600px 300px at 25% 0%, rgba(91,140,255,.20), transparent 55%),
+                 radial-gradient(550px 300px at 70% 20%, rgba(56,217,169,.16), transparent 55%);
+      opacity:.85;pointer-events:none}
+    .heroLeft > *{position:relative}
+    h1{font-size:44px;line-height:1.05;margin:0 0 12px;letter-spacing:-.6px}
+    @media (max-width: 520px){h1{font-size:36px}}
+    .sub{color:rgba(230,234,242,.75);font-size:16px;line-height:1.55;margin:0 0 18px;max-width:62ch}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 18px}
+    .badge{font-size:12px;border:1px solid var(--border);background:rgba(255,255,255,.02);
+      padding:8px 10px;border-radius:999px;color:rgba(230,234,242,.78)}
+    .heroCtas{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .note{margin-top:14px;font-size:12px;color:rgba(230,234,242,.55);line-height:1.45}
+    .danger{color:rgba(255,91,91,.9)}
+    .heroRight{padding:22px}
+    .bigBox{border:1px solid var(--border);border-radius:16px;background:rgba(15,26,46,.65);padding:16px}
+    .bigBox h2{margin:0 0 10px;font-size:18px}
+    .list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+    .li{display:flex;gap:10px;align-items:flex-start;color:rgba(230,234,242,.78);font-size:14px;line-height:1.45}
+    .dot{width:18px;height:18px;border-radius:6px;background:rgba(56,217,169,.18);border:1px solid rgba(56,217,169,.25);
+      display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+    .dot svg{width:12px;height:12px}
+    .form{margin-top:14px;display:grid;gap:10px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:520px){.row{grid-template-columns:1fr}}
+    input,select{
+      width:100%;padding:13px 12px;border-radius:14px;border:1px solid var(--border);
+      background:rgba(255,255,255,.03);color:var(--text);outline:none;
     }
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-      letter-spacing: -1px;
+    input:focus,select:focus{box-shadow:0 0 0 4px var(--ring);border-color:rgba(91,140,255,.35)}
+    .small{font-size:12px;color:rgba(230,234,242,.55);line-height:1.45}
+    .section{margin-top:18px;padding:22px}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:900px){.grid3{grid-template-columns:1fr}}
+    .mini{padding:16px;border-radius:16px;border:1px solid var(--border);background:rgba(255,255,255,.02)}
+    .mini b{display:block;margin-bottom:8px}
+    .mini p{margin:0;color:rgba(230,234,242,.72);font-size:14px;line-height:1.55}
+    .faq details{border:1px solid var(--border);background:rgba(255,255,255,.02);border-radius:16px;padding:12px 14px}
+    .faq summary{cursor:pointer;font-weight:800}
+    .faq p{margin:10px 0 0;color:rgba(230,234,242,.72);line-height:1.55;font-size:14px}
+    .footer{margin-top:16px;padding:18px 22px;color:rgba(230,234,242,.55);font-size:12px;line-height:1.55}
+    .kpi{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .kpi .pill{background:rgba(255,255,255,.02)}
+    .sticky{
+      position:fixed;left:0;right:0;bottom:0;z-index:50;
+      background:rgba(11,18,32,.88);backdrop-filter: blur(10px);
+      border-top:1px solid var(--border);
+      padding:10px 12px;display:none;
     }
-    h2 {
-      font-size: 20px;
-      color: #94a3b8;
-      margin-bottom: 32px;
-    }
-    p {
-      font-size: 16px;
-      line-height: 1.7;
-      margin-bottom: 18px;
-    }
-    .cta {
-      display: inline-block;
-      background: #22c55e;
-      color: #020617;
-      padding: 16px 28px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 700;
-      margin: 24px 0;
-      transition: transform .15s ease, box-shadow .15s ease;
-      box-shadow: 0 8px 24px rgba(34,197,94,.25);
-    }
-    .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(34,197,94,.35);
-    }
-    .section {
-      background: rgba(2,6,23,.6);
-      border-radius: 16px;
-      padding: 28px;
-      margin: 40px 0;
-      border: 1px solid rgba(148,163,184,.1);
-    }
-    ul {
-      padding-left: 20px;
-    }
-    li {
-      margin-bottom: 10px;
-    }
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 20px;
-    }
-    .link-btn {
-      padding: 12px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,.3);
-      color: #e5e7eb;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    footer {
-      margin-top: 48px;
-      font-size: 13px;
-      color: #94a3b8;
-      line-height: 1.6;
-    }
+    .sticky .inner{max-width:var(--max);margin:0 auto;display:flex;gap:10px;align-items:center;justify-content:space-between}
+    .sticky b{font-size:13px}
+    @media (max-width:900px){ .sticky{display:block;} .wrap{padding-bottom:130px} }
   </style>
 </head>
 
 <body>
-  <main class="wrapper">
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <b>Trading Simplu</b>
+          <div class="muted" style="font-size:12px;margin-top:2px">Affiliate funnel • conversie • tracking</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a href="#cum">Cum funcționează</a>
+        <a href="#alege">Alege categoria</a>
+        <a href="#faq">FAQ</a>
+        <a class="cta secondary" href="#start" id="ctaTop">Începe acum</a>
+      </div>
+    </div>
 
-    <h1>TRADING SIMPLU</h1>
-    <h2>Educație și mindset pentru cei care vor să înțeleagă tradingul</h2>
+    <div class="hero">
+      <section class="panel heroLeft">
+        <div class="pill" style="display:inline-flex;gap:10px;align-items:center">
+          <span>⚡ Setup rapid pentru începători</span>
+          <span style="opacity:.5">•</span>
+          <span class="muted">educațional, fără promisiuni</span>
+        </div>
 
-    <p>
-      TRADING SIMPLU este un proiect educațional independent dedicat celor care
-      vor să înțeleagă cum funcționează piețele financiare și de ce procesul,
-      disciplina și riscul contează mai mult decât promisiunile.
-    </p>
+        <h1>
+          Intră în <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent">comunitate + Discord</span>
+          și vezi structurat ce se urmărește pe piețe (Stocks / Crypto / Forex / US30 etc.)
+        </h1>
 
-    <p>
-      Nu oferim semnale, nu garantăm rezultate și nu promovăm câștiguri rapide.
-      Informațiile sunt strict educaționale.
-    </p>
+        <p class="sub">
+          Dacă ești începător, îți facem onboarding-ul simplu: alegi categoria, intri pe Discord, vezi semnale educaționale / antrenament
+          și primești context (analize, live, resurse). Tu decizi dacă ți se potrivește.
+        </p>
 
-    <a href="https://dantoma.trade/ref/12175/" class="cta" target="_blank" rel="noopener">
-      Accesează resursele educaționale
-    </a>
+        <div class="badges">
+          <span class="badge">✅ Discord pe categorii</span>
+          <span class="badge">✅ semnale educaționale / antrenament</span>
+          <span class="badge">✅ actualizări zilnice</span>
+          <span class="badge">✅ mentorat / cursuri (opțional)</span>
+        </div>
 
-    <section class="section">
-      <h3>Pentru cine este</h3>
-      <ul>
-        <li>Începători interesați de trading și piețe financiare</li>
-        <li>Persoane care vor educație, nu promisiuni</li>
-        <li>Cei care vor să înțeleagă riscurile reale</li>
-        <li>Oameni care vor să construiască o mentalitate corectă</li>
-      </ul>
-    </section>
+        <div class="heroCtas">
+          <a class="cta primary out-link" href="#" id="ctaPrimary" data-event="ClickPrimary" rel="noopener noreferrer">
+            Vezi abonamentele (link afiliere) →
+          </a>
+          <a class="cta secondary" href="#start">Vreau checklist-ul gratuit</a>
+        </div>
 
-    <section class="section">
-      <h3>Urmărește TRADING SIMPLU</h3>
-      <div class="links">
-        <a class="link-btn" href="#" target="_blank">TikTok</a>
-        <a class="link-btn" href="#" target="_blank">YouTube</a>
-        <a class="link-btn" href="#" target="_blank">Facebook</a>
+        <div class="kpi">
+          <span class="pill">🎯 Focus: structură</span>
+          <span class="pill">🔒 Setup & disciplină</span>
+          <span class="pill">📌 Fără hype</span>
+          <span class="pill">📊 Piețe multiple</span>
+        </div>
+
+        <p class="note">
+          <span class="danger">Disclaimer:</span> Conținut educațional. Nu este sfat financiar.
+          Tradingul implică risc și poți pierde capital.
+        </p>
+      </section>
+
+      <aside class="panel heroRight" id="start">
+        <div class="bigBox">
+          <h2>Primește “Checklist-ul de început” (opțional)</h2>
+          <ul class="list">
+            <li class="li"><span class="dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>Ce setări contează la început + ce să eviți</li>
+            <li class="li"><span class="dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>Pași de securitate (cont, parole, 2FA)</li>
+            <li class="li"><span class="dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>Cum alegi categoria potrivită (Stocks/Crypto/Forex)</li>
+          </ul>
+
+          <!-- Lead capture: dacă NU ai endpoint, poți lăsa și va arăta “demo success”.
+               Recomand să legi la MailerLite/Brevo/ConvertKit/Google Forms. -->
+          <form class="form" id="leadForm">
+            <div class="row">
+              <input name="name" placeholder="Nume (opțional)" autocomplete="name" />
+              <select name="interest">
+                <option value="stocks">Interes: Stocks</option>
+                <option value="crypto">Interes: Crypto</option>
+                <option value="forex">Interes: Forex</option>
+                <option value="us30">Interes: US30</option>
+                <option value="aur">Interes: Aur</option>
+                <option value="optiuni">Interes: Opțiuni</option>
+              </select>
+            </div>
+            <input required name="email" type="email" placeholder="Email (pentru checklist)" autocomplete="email" />
+            <button type="submit" class="cta primary" style="width:100%;cursor:pointer" id="ctaLead" data-event="LeadSubmit">
+              Trimite checklist-ul →
+            </button>
+            <div class="small">
+              Prin trimitere ești de acord să primești emailuri educaționale. Te poți dezabona oricând.
+            </div>
+          </form>
+
+          <div class="small" id="leadResult" style="display:none;margin-top:10px"></div>
+
+          <div style="margin-top:14px">
+            <div class="small muted">Preferi direct abonamentele?</div>
+            <a class="cta secondary out-link" href="#" id="ctaSecondary" data-event="ClickSecondary" rel="noopener noreferrer" style="width:100%">
+              Merg direct la abonamente →
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="panel section" id="cum">
+      <h2 style="margin:0 0 12px;font-size:22px">Cum funcționează (în 3 pași simpli)</h2>
+      <div class="grid3">
+        <div class="mini">
+          <b>1) Alegi categoria</b>
+          <p>Stocks / Crypto / Forex / US30 etc. (în funcție de ce vrei să urmărești).</p>
+        </div>
+        <div class="mini">
+          <b>2) Intri pe Discord</b>
+          <p>Acces la canale și conținut pe categorie + structură de lucru.</p>
+        </div>
+        <div class="mini">
+          <b>3) Urmărești educațional</b>
+          <p>Semnale educaționale/antrenament + context. Tu decizi ce aplici și când.</p>
+        </div>
       </div>
     </section>
 
-    <footer>
-      <p>
-        Disclaimer: Informațiile prezentate au scop exclusiv educațional și nu
-        reprezintă sfaturi financiare sau de investiții. Tradingul implică risc,
-        iar rezultatele pot varia în funcție de experiență și disciplină.
-      </p>
-      <p>© TRADING SIMPLU</p>
-    </footer>
+    <section class="panel section" id="alege">
+      <h2 style="margin:0 0 12px;font-size:22px">Alege rapid (link afiliere)</h2>
+      <div class="grid3">
+        <div class="mini">
+          <b>Stocks / BigCaps</b>
+          <p>Focus pe acțiuni + idei structurate pe piață.</p>
+          <div style="margin-top:12px">
+            <a class="cta primary out-link" href="#" data-event="ClickCatStocks" rel="noopener noreferrer" style="width:100%">Vezi opțiuni →</a>
+          </div>
+        </div>
+        <div class="mini">
+          <b>Crypto</b>
+          <p>Canale dedicate + actualizări și structură pe crypto.</p>
+          <div style="margin-top:12px">
+            <a class="cta primary out-link" href="#" data-event="ClickCatCrypto" rel="noopener noreferrer" style="width:100%">Vezi opțiuni →</a>
+          </div>
+        </div>
+        <div class="mini">
+          <b>Forex / US30 / Aur / Opțiuni</b>
+          <p>Acces pe instrumente specifice, în funcție de stilul tău.</p>
+          <div style="margin-top:12px">
+            <a class="cta primary out-link" href="#" data-event="ClickCatOther" rel="noopener noreferrer" style="width:100%">Vezi opțiuni →</a>
+          </div>
+        </div>
+      </div>
 
-  </main>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="cta primary out-link" href="#" data-event="ClickMid" rel="noopener noreferrer">Intră acum (abonamente) →</a>
+        <a class="cta secondary" href="#start">Ia checklist-ul</a>
+      </div>
+
+      <div class="footer">
+        Notă: oferta și abonamentele sunt pe site-ul DanToma. Prețurile și conținutul pot varia; verifică pagina oficială înainte de achiziție.
+      </div>
+    </section>
+
+    <section class="panel section faq" id="faq">
+      <h2 style="margin:0 0 12px;font-size:22px">FAQ</h2>
+      <div style="display:grid;gap:10px">
+        <details>
+          <summary>Ce vând, concret?</summary>
+          <p>Direcționezi către abonamente/cursuri/mentorat (pe categorii) + acces Discord, unde există semnale și resurse educaționale. :contentReference[oaicite:2]{index=2}</p>
+        </details>
+        <details>
+          <summary>Promiteți profit?</summary>
+          <p>Nu. Conținut educațional. Tradingul implică risc și poți pierde capital.</p>
+        </details>
+        <details>
+          <summary>Pot să track-uiesc de unde vin conversiile?</summary>
+          <p>Da. Landing-ul păstrează UTM-urile (utm_source/utm_campaign etc.) și le atașează la linkul de afiliere.</p>
+        </details>
+      </div>
+
+      <div class="footer">
+        <b>Disclaimer:</b> Informațiile au caracter educațional și nu reprezintă consultanță financiară/investițională.
+        Performanțele trecute nu garantează rezultate viitoare. Citește termenii și riscurile înainte de a folosi orice serviciu.
+      </div>
+    </section>
+  </div>
+
+  <!-- Sticky CTA (mobil) -->
+  <div class="sticky" role="region" aria-label="Acțiune rapidă">
+    <div class="inner">
+      <div>
+        <b>Trading Simplu</b>
+        <div class="muted" style="font-size:12px">Intră pe abonamente (afiliere)</div>
+      </div>
+      <a class="cta primary out-link" href="#" data-event="ClickSticky" rel="noopener noreferrer" style="padding:12px 14px;border-radius:14px">
+        Începe →
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // ========= CONFIG =========
+    // Linkul tău de afiliere (entrypoint). Observ: /ref/12175/ redirecționează către homepage,
+    // dar îl păstrăm ca base ca să fie creditat.
+    const AFFILIATE_URL = "https://dantoma.trade/ref/12175/";
+
+    // Lead capture endpoint (opțional). Dacă e gol, simulăm success.
+    // Recomand: MailerLite/Brevo/ConvertKit sau un Google Forms/Apps Script endpoint.
+    const LEAD_ENDPOINT = "";
+
+    // ========= UTM / PARAM TRACKING =========
+    const params = new URLSearchParams(window.location.search);
+
+    // Add UTMs to affiliate URL (non-destructive)
+    function buildUrlWithParams(baseUrl) {
+      try {
+        const u = new URL(baseUrl);
+        const existing = new URLSearchParams(u.search);
+        params.forEach((v, k) => { if (!existing.has(k)) existing.set(k, v); });
+        u.search = existing.toString();
+        return u.toString();
+      } catch (e) {
+        return baseUrl;
+      }
+    }
+
+    // Apply affiliate URL to all .out-link
+    const out = buildUrlWithParams(AFFILIATE_URL);
+    document.querySelectorAll(".out-link").forEach(a => {
+      a.href = out;
+      a.addEventListener("click", () => track(a.dataset.event || "ClickOut"));
+    });
+
+    // ========= SIMPLE EVENT TRACK =========
+    function track(name){
+      if (typeof gtag === "function") gtag("event", name, Object.fromEntries(params.entries()));
+      if (typeof fbq === "function") fbq("trackCustom", name, Object.fromEntries(params.entries()));
+    }
+
+    // ========= LEAD FORM =========
+    const leadForm = document.getElementById("leadForm");
+    const leadResult = document.getElementById("leadResult");
+
+    leadForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      track("LeadAttempt");
+
+      const data = new FormData(leadForm);
+      const payload = {
+        name: (data.get("name") || "").toString().trim(),
+        email: (data.get("email") || "").toString().trim(),
+        interest: (data.get("interest") || "stocks").toString(),
+        utm: Object.fromEntries(params.entries()),
+        ts: new Date().toISOString()
+      };
+
+      if (!payload.email || !payload.email.includes("@")) {
+        showLeadMessage("Te rog introdu un email valid.", true);
+        return;
+      }
+
+      // No backend: demo success (poți păstra și să colectezi doar clickuri)
+      if (!LEAD_ENDPOINT) {
+        showLeadMessage("✅ Perfect! Checklist-ul ar fi trimis pe email. Poți intra acum pe abonamente.", false);
+        track("LeadCaptured");
+        return;
+      }
+
+      try {
+        const res = await fetch(LEAD_ENDPOINT, {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error("Bad response");
+        showLeadMessage("✅ Gata! Verifică emailul (și folderul Spam).", false);
+        track("LeadCaptured");
+      } catch(err){
+        showLeadMessage("⚠️ Nu am putut trimite acum. Încearcă din nou sau intră direct pe abonamente.", true);
+        track("LeadError");
+      }
+    });
+
+    function showLeadMessage(msg, isError){
+      leadResult.style.display = "block";
+      leadResult.textContent = msg;
+      leadResult.style.color = isError ? "rgba(255,91,91,.9)" : "rgba(56,217,169,.95)";
+    }
+
+    // Optional: scroll depth
+    let s25=false,s50=false,s75=false;
+    window.addEventListener("scroll", () => {
+      const h=document.documentElement;
+      const sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight);
+      if(!s25 && sc>.25){s25=true;track("Scroll25");}
+      if(!s50 && sc>.50){s50=true;track("Scroll50");}
+      if(!s75 && sc>.75){s75=true;track("Scroll75");}
+    });
+
+    document.getElementById("ctaTop").addEventListener("click", () => track("ClickTopNav"));
+  </script>
 </body>
 </html>
